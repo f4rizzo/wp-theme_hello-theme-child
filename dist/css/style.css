@@ -40,6 +40,18 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
   width: var(--lightbox-navigation-icons-size);
 }
 
+/*
+
+ * =======================================================
+ * Override - Blockquotes
+ * =======================================================
+
+ * Aggiunge stile al Blockquote default di Elementor.
+ */
+.elementor-blockquote__content {
+  padding-inline-start: 25px;
+}
+
 .header-title {
   font-size: clamp(1rem, 7vw, 3.875rem) !important;
 }
@@ -51,6 +63,60 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
   font-size: clamp(2rem, 10vw, 6.188rem);
   line-height: 1.2;
   font-weight: 400;
+}
+
+.ff-title {
+  font-family: "Anton", Arial, Helvetica, sans-serif;
+}
+
+.ff-text {
+  font-family: "Literata", serif;
+}
+
+.semibold {
+  font-weight: 600;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.size-1, .title-Anton-xl {
+  font-size: clamp(2.5rem, 1.0935rem + 4.5008vw, 5.313rem);
+}
+
+.size-2, .title-Anton-lg {
+  font-size: clamp(2.5rem, 0.625rem + 4.4vw, 4.75rem);
+}
+
+.size-3, .title-Literata-lg {
+  font-size: clamp(1.9rem, 0.6rem + 4.16vw, 4.5rem);
+}
+
+.title-Anton-lg, .title-Anton-xl {
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.2;
+  font-family: "Anton", Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+}
+
+.title-Literata-lg {
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.2;
+  font-family: "Literata", serif;
+}
+
+/*
+ * =======================================================
+ * Matrimonio - Loop
+ * =======================================================
+ */
+.wedding-loop__coniugi {
+  font-family: "Source Sans 3", Sans-serif;
+  font-weight: 400;
+  text-decoration: 0.85rem;
 }
 
 /*
@@ -124,7 +190,14 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
   display: block;
 }
 @media (min-width: 1440px) {
-  .modular-gallery__item.large {
+  .modular-gallery__item.tall {
+    grid-row: span 2;
+  }
+  .modular-gallery__item.tall img {
+    object-fit: cover;
+    height: 100%;
+  }
+  .modular-gallery__item.wide {
     grid-column: span 2;
   }
 }

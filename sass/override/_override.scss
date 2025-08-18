@@ -15,14 +15,14 @@
 // .elementor-element .swiper~.elementor-swiper-button,
 .elementor-lightbox .swiper .elementor-swiper-button,
 .elementor-lightbox .swiper~.elementor-swiper-button {
-    color: hsla(0, 0%, 93%, .9);
-    cursor: pointer;
-    display: inline-flex;
-    font-size: var(--lightbox-navigation-icons-size);
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1;
+  color: hsla(0, 0%, 93%, .9);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: var(--lightbox-navigation-icons-size);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
 }
 
 
@@ -30,8 +30,23 @@
 // .elementor-element .swiper~.elementor-swiper-button svg,
 .elementor-lightbox .swiper .elementor-swiper-button svg,
 .elementor-lightbox .swiper~.elementor-swiper-button svg {
-    // height: 1em;
-    // width: 1em;
-    height: var(--lightbox-navigation-icons-size);
-    width: var(--lightbox-navigation-icons-size);
+  // height: 1em;
+  // width: 1em;
+  height: var(--lightbox-navigation-icons-size);
+  width: var(--lightbox-navigation-icons-size);
+}
+
+/*
+
+ * =======================================================
+ * Override - Blockquotes
+ * =======================================================
+
+ * Aggiunge stile al Blockquote default di Elementor.
+ */
+
+.elementor-blockquote {
+  &__content {
+    padding-inline-start:25px;
+  }
 }

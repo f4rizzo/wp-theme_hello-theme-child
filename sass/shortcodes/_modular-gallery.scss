@@ -24,7 +24,14 @@
     display: block;
   }
   @include u.respond-to(xl) {
-    &__item.large {
+    &__item.tall {
+      grid-row: span 2;
+      & img {
+        object-fit: cover;
+        height: 100%;
+      }
+    }
+    &__item.wide {
       grid-column: span 2;
     }
   }

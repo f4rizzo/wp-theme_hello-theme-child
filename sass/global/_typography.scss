@@ -12,3 +12,73 @@
     font-weight: 400;
   }
 }
+
+.ff-title {
+  font-family: u.$ff-title;
+}
+.ff-text {
+  font-family: u.$ff-text;
+}
+
+.semibold {
+  font-weight: 600;
+}
+.bold {
+  font-weight: 700;
+}
+
+// Typography sizes using clamp for responsive design
+// These sizes will adjust based on viewport width
+// The values are set to ensure a good balance between readability and aesthetics
+.size-0 {
+}
+.size-1 {
+  font-size: clamp(2.5rem, 1.0935rem + 4.5008vw, 5.313rem);
+}
+.size-2 {
+  font-size: clamp(2.5rem, 0.625rem + 4.4vw, 4.75rem);
+}
+.size-3 {
+  font-size: clamp(1.9rem, 0.6rem + 4.16vw, 4.5rem);
+}
+
+// Typography styles for titles
+%title-Anton {
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.2;
+  font-family: u.$ff-title;
+  text-transform: uppercase
+}
+
+.title-Anton-xl {
+  @extend %title-Anton;
+  @extend .size-1; 
+}
+.title-Anton-lg {
+  @extend %title-Anton;
+  @extend .size-2; 
+}
+
+
+%title-Literata {
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.2;
+  font-family: u.$ff-text;
+}
+.title-Literata-lg {
+  @extend %title-Literata;
+  @extend .size-3;
+}
+
+
+// Typography styles for blockquotes
+// Override Elementor blockquote styles
+
+.elementor-blockquote {
+  &__content {
+    // vedi sezione override/_override.scss
+  }
+}
+
