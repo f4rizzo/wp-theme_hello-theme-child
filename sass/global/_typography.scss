@@ -30,16 +30,19 @@
 // Typography sizes using clamp for responsive design
 // These sizes will adjust based on viewport width
 // The values are set to ensure a good balance between readability and aesthetics
-.size-0 {
-}
-.size-1 {
-  font-size: clamp(2.5rem, 1.0935rem + 4.5008vw, 5.313rem);
-}
-.size-2 {
-  font-size: clamp(2.5rem, 0.625rem + 4.4vw, 4.75rem);
-}
-.size-3 {
-  font-size: clamp(1.9rem, 0.6rem + 4.16vw, 4.5rem);
+.f_size {
+  &-1 {
+    font-size: clamp(3.2rem, 1.0935rem + 4.5008vw, 5.313rem);
+  }
+  &-2 {
+    font-size: clamp(3rem, 0.625rem + 4.4vw, 4.75rem);
+  }
+  &-3 {
+    font-size: clamp(2.8rem, 0.6rem + 4.16vw, 4.5rem);
+  }
+  &-4 {
+    font-size: clamp(1.875rem, 1.7188rem + 0.5vw, 2rem);
+  }
 }
 
 // Typography styles for titles
@@ -53,11 +56,15 @@
 
 .title-Anton-xl {
   @extend %title-Anton;
-  @extend .size-1; 
+  @extend .f_size-1; 
 }
 .title-Anton-lg {
   @extend %title-Anton;
-  @extend .size-2; 
+  @extend .f_size-2; 
+}
+.title-Anton-md {
+  @extend %title-Anton;
+  @extend .f_size-3; 
 }
 
 
@@ -67,9 +74,14 @@
   line-height: 1.2;
   font-family: u.$ff-text;
 }
-.title-Literata-lg {
+
+.title-Literata-md {
   @extend %title-Literata;
-  @extend .size-3;
+  @extend .f_size-3;
+}
+.title-Literata-sm {
+  @extend %title-Literata;
+  @extend .f_size-4;
 }
 
 
@@ -82,3 +94,10 @@
   }
 }
 
+@include u.respond($to: 'lg') {
+  .m-ta {
+    &__center {
+      text-align: center;
+    }
+  }
+}

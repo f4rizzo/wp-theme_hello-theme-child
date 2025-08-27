@@ -1,3 +1,4 @@
+@use "../util" as u;
 
 /*
 
@@ -48,5 +49,46 @@
 .elementor-blockquote {
   &__content {
     padding-inline-start:25px;
+  }
+}
+
+
+/*
+
+ * =======================================================
+ * Override - Contact Form
+ * =======================================================
+
+ */
+.contact-form {
+  .elementor-field {
+    padding-inline: 0;
+    box-shadow: none !important; /* rimuove box-shadow di default di elementor che fa da overlay */
+  }
+}
+
+
+/*
+
+ * =======================================================
+ * Override - Anteprima Home Loop Matrimonio
+ * =======================================================
+
+ */
+@include u.respond('lg') {
+  .matrimonio-loop-alternate .elementor-grid {
+    grid-template-columns: 1fr 1.5fr 1fr;
+  }
+}
+.matrimonio-loop-item-home {
+  & > .e-con-inner {
+    position: relative;
+    // border: 2px solid red;
+  }
+}
+
+.feat-image {
+  &--large {
+    height: 95%;
   }
 }
