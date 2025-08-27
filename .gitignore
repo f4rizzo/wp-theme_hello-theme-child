@@ -1,4 +1,4 @@
 .DS_Store
 
-# Ignore distribution files
-/dist/
+# Ignore distribution files and contents
+dist/

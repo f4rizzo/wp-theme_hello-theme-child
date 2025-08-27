@@ -15,6 +15,30 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
 /*
 
  * =======================================================
+ * Mixin reattivo avanzato
+ * =======================================================
+
+ * @param {String} $from - Breakpoint di partenza (opzionale)
+ * @param {String} $to   - Breakpoint di fine (opzionale)
+
+ * Combina le condizioni:
+
+ * Se fornisci sia $from che $to, li unisce con and per creare un intervallo.
+ * Se fornisci solo uno dei due, crea una media query semplice (min-width o max-width).
+
+ * Accetta due parametri opzionali: $from e $to.
+ * Genera min-width: Se fornisci $from, crea una condizione (min-width: ...).
+  * esempio: @include respond('sm') { ... } genera @media (min-width: 768px) { ... }
+ * Genera max-width: Se fornisci $to, crea una condizione (max-width: ...).
+  * Sottrarre 0.02px: serve per non sovrapporsi al breakpoint successivo.
+  * esempio: @include respond(null, 'md') { ... } genera @media (max-width: 1023.98px) { ... }
+ * Genera un range max/min: Se fornisci $from, $to, crea una condizione (min-width: ...) and (max-width: ...).
+  * esempio: @include respond('sm', 'md') { ... } genera @media (min-width: 768px) and (max-width: 1023.98px) { ... }
+
+ */
+/*
+
+ * =======================================================
  * Override - Image Lightbox
  * =======================================================
 
@@ -52,6 +76,43 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
   padding-inline-start: 25px;
 }
 
+/*
+
+ * =======================================================
+ * Override - Contact Form
+ * =======================================================
+
+ */
+.contact-form .elementor-field {
+  padding-inline: 0;
+  box-shadow: none !important; /* rimuove box-shadow di default di elementor che fa da overlay */
+}
+
+/*
+
+ * =======================================================
+ * Override - Anteprima Home Loop Matrimonio
+ * =======================================================
+
+ */
+@media (min-width: 1280px) {
+  .matrimonio-loop-alternate .elementor-grid {
+    grid-template-columns: 1fr 1.5fr 1fr;
+  }
+}
+.matrimonio-loop-item-home > .e-con-inner {
+  position: relative;
+}
+
+.feat-image--large {
+  height: 95%;
+}
+
+@media (max-width: 1279.98px) {
+  .m-block {
+    display: block;
+  }
+}
 .header-title {
   font-size: clamp(1rem, 7vw, 3.875rem) !important;
 }
@@ -81,19 +142,20 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
   font-weight: 700;
 }
 
-.size-1, .title-Anton-xl {
-  font-size: clamp(2.5rem, 1.0935rem + 4.5008vw, 5.313rem);
+.f_size-1, .title-Anton-xl {
+  font-size: clamp(3.2rem, 1.0935rem + 4.5008vw, 5.313rem);
+}
+.f_size-2, .title-Anton-lg {
+  font-size: clamp(3rem, 0.625rem + 4.4vw, 4.75rem);
+}
+.f_size-3, .title-Literata-md, .title-Anton-md {
+  font-size: clamp(2.8rem, 0.6rem + 4.16vw, 4.5rem);
+}
+.f_size-4, .title-Literata-sm {
+  font-size: clamp(1.875rem, 1.7188rem + 0.5vw, 2rem);
 }
 
-.size-2, .title-Anton-lg {
-  font-size: clamp(2.5rem, 0.625rem + 4.4vw, 4.75rem);
-}
-
-.size-3, .title-Literata-lg {
-  font-size: clamp(1.9rem, 0.6rem + 4.16vw, 4.5rem);
-}
-
-.title-Anton-lg, .title-Anton-xl {
+.title-Anton-md, .title-Anton-lg, .title-Anton-xl {
   font-style: normal;
   font-weight: 400;
   line-height: 1.2;
@@ -101,13 +163,18 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
   text-transform: uppercase;
 }
 
-.title-Literata-lg {
+.title-Literata-sm, .title-Literata-md {
   font-style: italic;
   font-weight: 600;
   line-height: 1.2;
   font-family: "Literata", serif;
 }
 
+@media (max-width: 1279.98px) {
+  .m-ta__center {
+    text-align: center;
+  }
+}
 /*
  * =======================================================
  * Matrimonio - Loop
