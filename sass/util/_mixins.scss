@@ -1,15 +1,75 @@
 @use 'sass:map';
-@use 'variables';
+@use 'variables' as v;
 
 // Mixin reattivo per breakpoint mobile-first
 // @param {String} $label — nome del breakpoint (chiave nella mappa)
 @mixin respond-to($label) {
-  @if map.has-key(variables.$breakpoints, $label) {
-    $size: map.get(variables.$breakpoints, $label);
+  @if map.has-key(v.$breakpoints, $label) {
+    $size: map.get(v.$breakpoints, $label);
     @media (min-width: $size) {
       @content;
     }
   } @else {
     @warn "Breakpoint “#{$label}” non definito in $breakpoints.";
+  }
+}
+
+
+/*
+
+ * =======================================================
+ * Mixin reattivo avanzato
+ * =======================================================
+
+ * @param {String} $from - Breakpoint di partenza (opzionale)
+ * @param {String} $to   - Breakpoint di fine (opzionale)
+
+ * Combina le condizioni:
+
+ * Se fornisci sia $from che $to, li unisce con and per creare un intervallo.
+ * Se fornisci solo uno dei due, crea una media query semplice (min-width o max-width).
+
+ * Accetta due parametri opzionali: $from e $to.
+ * Genera min-width: Se fornisci $from, crea una condizione (min-width: ...).
+  * esempio: @include respond('sm') { ... } genera @media (min-width: 768px) { ... }
+ * Genera max-width: Se fornisci $to, crea una condizione (max-width: ...).
+  * Sottrarre 0.02px: serve per non sovrapporsi al breakpoint successivo.
+  * esempio: @include respond(null, 'md') { ... } genera @media (max-width: 1023.98px) { ... }
+ * Genera un range max/min: Se fornisci $from, $to, crea una condizione (min-width: ...) and (max-width: ...).
+  * esempio: @include respond('sm', 'md') { ... } genera @media (min-width: 768px) and (max-width: 1023.98px) { ... }
+
+ */
+
+@mixin respond($from: null, $to: null) {
+  $query-min: null;
+  $query-max: null;
+
+  // Imposta min-width se $from è definito
+  @if $from and map.has-key(v.$breakpoints, $from) {
+    $query-min: "(min-width: #{map.get(v.$breakpoints, $from)})";
+  }
+
+  // Imposta max-width se $to è definito
+  @if $to and map.has-key(v.$breakpoints, $to) {
+    // Sottraiamo un'inezia per evitare sovrapposizioni con il breakpoint successivo
+    $size-max: map.get(v.$breakpoints, $to) - 0.02px;
+    $query-max: "(max-width: #{$size-max})";
+  }
+
+  // Genera la media query corretta
+  @if $query-min and $query-max {
+    @media #{$query-min} and #{$query-max} {
+      @content;
+    }
+  } @else if $query-min {
+    @media #{$query-min} {
+      @content;
+    }
+  } @else if $query-max {
+    @media #{$query-max} {
+      @content;
+    }
+  } @else {
+    @warn "Nessun breakpoint valido fornito per il mixin respond.";
   }
 }
